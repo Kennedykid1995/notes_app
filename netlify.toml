@@ -2,7 +2,6 @@
 ID = "bb23e6d7-25dd-4e79-a786-a7fca583c8aa" 
 
 # Settings in the [build] context are global and are applied to all contexts unless otherwise overridden by more specific contexts.  
-
 [build]
   # This is the directory to change to before starting a build.
   base    = "notes"
