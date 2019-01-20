@@ -1,13 +1,13 @@
 [Settings]
-ID = "ad7e0da9-56cf-4a1d-8873-ccfb3bd65251" <--- you'll get this id from netlify
+ID = "bb23e6d7-25dd-4e79-a786-a7fca583c8aa" 
 
 # Settings in the [build] context are global and are applied to all contexts unless otherwise overridden by more specific contexts.  
 
 [build]
   # This is the directory to change to before starting a build.
-  base    = "app-name/"
+  base    = "notes"
   # NOTE: This is where we will look for package.json/.nvmrc/etc, not root.
   # This is the directory that you are publishing from (relative to root of your repo)
-  publish = "app-name/build/"
+  publish = "notes/build/"
   # This will be your default build command
   command = "yarn build"
