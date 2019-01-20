@@ -1,20 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Major Mono Display', monospace;
-  background: white;
-}
-.App{
-  display: flex; 
-  flex-direction: row;
-  justify-content:space-evenly;
-  align-items: center;
-}
-.NoteBox{
-  width: 90%;
-  height:560px;
-  margin-top: 25px;
-  background: #d3c4c2;
+  font-family: 'Montserrat', sans-serif;
+  background: lightgrey;
 }
 
 
