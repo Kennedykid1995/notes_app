@@ -18,3 +18,4 @@ class NotePage extends Component{
         )
     }
 }
+export default NotePage;
