@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import "./design-system.css";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 const IndividualNotePage = styled.div`
   width: 90%; 
-  height: 490px;
-  border: 1px solid black; 
+  height: 640px;
 `
 const TitleInput = styled.input`
   width: 70%;
@@ -36,7 +34,8 @@ class IndividualNote extends Component {
       <IndividualNotePage>
         <TitleInput placeholder="Title" />
         <TextArea placeholder="Description" />
-        <Btn>Add Note</Btn>
+        <Btn to="/">Add Revisions</Btn>
+        <Btn to="/">Delete</Btn>
       </IndividualNotePage>
     );
   }
