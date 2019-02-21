@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './design-system.css';
 import styled from "styled-components";
 import {NavLink, Route} from 'react-router-dom';
-import NoteObj from "./components/note"; 
+import NotePage from "./components/pages/notepage"; 
+import AddNote from './components/pages/addNote';
+import IndividualNote from './components/pages/individualnote';
 
 const AppHolder = styled.div`
   display: flex; 
@@ -10,11 +12,12 @@ const AppHolder = styled.div`
   justify-content:space-evenly;
   align-items: center;
 `
-const NoteBox = styled.div`
+const NavBox = styled.div`
   width: 90%;
   height:650px;
   margin-top: 15px;
   background: white;
+  border-radius: 5px;
   overflow-y: scroll;
 `
 const NavBar = styled.div`
@@ -41,7 +44,7 @@ class App extends Component {
   render() {
     return (
       <AppHolder>
-        <NoteBox>
+        <NavBox>
           <NavBar>
             <NavItem to="/">
               View Notes
@@ -51,9 +54,21 @@ class App extends Component {
             </NavItem>
           </NavBar>
           <PageContainer>
-            <NoteObj />
+            <Route
+            exact
+            path="/"
+            render={props =><NotePage {...props} /> }
+            />
+            <Route
+            path="/add-note"
+            render={props =><AddNote {...props} /> }
+            />
+            <Route
+            path="/note"
+            render={props =><IndividualNote {...props} /> }
+            />
           </PageContainer>
-        </NoteBox>
+        </NavBox>
       </AppHolder>
     );
   }

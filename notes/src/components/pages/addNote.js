@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import "./design-system.css";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 const NewNotePage = styled.div`
   width: 90%; 
-  height: 490px;
-  border: 1px solid black; 
+  height: 640px;
+  display: flex; 
+  flex-direction:column;
 `
 const TitleInput = styled.input`
   width: 70%;
@@ -36,7 +36,7 @@ class AddNote extends Component {
       <NewNotePage>
         <TitleInput placeholder="Title" />
         <TextArea placeholder="Description" />
-        <Btn>Add Note</Btn>
+        <Btn to="/">Add Note</Btn>
       </NewNotePage>
     );
   }
