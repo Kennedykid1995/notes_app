@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from 'react';
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
@@ -30,8 +30,7 @@ const Btn = styled(NavLink)`
   pointer: cursor;
 `
 
-class AddNote extends Component {
-  render() {
+function AddNote(){
     return (
       <NewNotePage>
         <TitleInput placeholder="Title" />
@@ -39,6 +38,5 @@ class AddNote extends Component {
         <Btn to="/">Add Note</Btn>
       </NewNotePage>
     );
-  }
 }
 export default AddNote;
