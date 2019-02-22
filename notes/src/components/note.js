@@ -45,10 +45,10 @@ class NoteObj extends Component {
         return(
             <Note>
                 <NoteHeader to="/note"> 
-                  <HeaderText> Title </HeaderText>
+                  <HeaderText>Work Schedule </HeaderText>
                 </NoteHeader>
                 <NoteContents>
-                 <Text> blah </Text>
+                 <Text></Text>
                 </NoteContents>
             </Note>
         )
