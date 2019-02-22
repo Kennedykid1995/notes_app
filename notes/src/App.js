@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './design-system.css';
 import styled from "styled-components";
 import {NavLink, Route} from 'react-router-dom';
@@ -40,8 +40,7 @@ const PageContainer = styled.div`
   justify-content: center;
 `
 
-class App extends Component {
-  render() {
+function App() {
     return (
       <AppHolder>
         <NavBox>
@@ -71,7 +70,6 @@ class App extends Component {
         </NavBox>
       </AppHolder>
     );
-  }
 }
 
 export default App;

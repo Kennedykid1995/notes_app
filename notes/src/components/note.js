@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 import {NavLink} from 'react-router-dom';
 
@@ -40,8 +40,7 @@ const Text = styled.p`
   margin: 5px;
 `
 
-class NoteObj extends Component {
-    render(){
+function NoteObj() {
         return(
             <Note>
                 <NoteHeader to="/note"> 
@@ -52,6 +51,5 @@ class NoteObj extends Component {
                 </NoteContents>
             </Note>
         )
-    }
 } 
 export default NoteObj;

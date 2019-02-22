@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from 'react';
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
@@ -28,8 +28,7 @@ const Btn = styled(NavLink)`
   pointer: cursor;
 `
 
-class IndividualNote extends Component {
-  render() {
+function IndividualNote(){
     return (
       <IndividualNotePage>
         <TitleInput placeholder="Title" />
@@ -38,6 +37,5 @@ class IndividualNote extends Component {
         <Btn to="/">Delete</Btn>
       </IndividualNotePage>
     );
-  }
 }
 export default IndividualNote;

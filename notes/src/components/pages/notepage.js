@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 import NoteObj from "../note"; 
 
@@ -10,13 +10,11 @@ const ViewNotesPage = styled.div`
   justify-content: space-evenly;
 `
 
-class NotePage extends Component{
-    render(){
+function NotePage(){
         return(
             <ViewNotesPage>
                 <NoteObj />
             </ViewNotesPage>
         )
-    }
 }
 export default NotePage;
