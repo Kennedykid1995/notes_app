@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import {useFetch} from "./hooks"; 
 import styled from "styled-components";
 import {NavLink} from 'react-router-dom';
+import Axios from 'axios';
 
 const Note = styled.div`
   margin: 10px;
@@ -40,16 +42,26 @@ const Text = styled.p`
   margin: 5px;
 `
 
-function NoteObj() {
+function NoteObj(){
+  const [data, loading] = useFetch(
+      'http://localhost:3001/notes',
+  );
         return(
+          <>
+          {loading ? (
+            "...loading"
+          ):(
+            <>
+            {data.map(({id, title, content}) => (
             <Note>
-                <NoteHeader to="/note"> 
-                  <HeaderText>Work Schedule </HeaderText>
+                <NoteHeader key={id} to="/note"> 
+                  <HeaderText>{title}</HeaderText>
                 </NoteHeader>
-                <NoteContents>
-                 <Text></Text>
-                </NoteContents>
             </Note>
-        )
+             ))}
+            </>
+              )}
+              </>
+        );
 } 
 export default NoteObj;
