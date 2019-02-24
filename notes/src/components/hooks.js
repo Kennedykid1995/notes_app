@@ -16,15 +16,6 @@ function useFetch(url) {
 }
 export { useFetch };
 
-function useAdd(url){
-    const initialNote = {
-        title: "",
-        content: "",
-      }
-
-}
-export {useAdd}; 
-
 function useEdit(url){
     
 }

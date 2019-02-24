@@ -31,11 +31,32 @@ const Btn = styled(NavLink)`
 `
 
 function AddNote(){
+
+  const initialNote = { title: "", content: ""};
+  const [note, setNote] = useState(initialNote); 
+
+  const  useInputChange = event => {
+    const {name, value} = event.target
+    setNote({...note, [name]: value})
+}
+
     return (
       <NewNotePage>
-        <TitleInput placeholder="Title" />
-        <TextArea placeholder="Description" />
+        <form>
+        <TitleInput 
+        placeholder="Title"
+        name="title"
+        value={note.title}
+        onChange={useInputChange}
+         />
+        <TextArea 
+        placeholder="Description"
+        name="content"
+        value={note.content}
+        onChange={useInputChange}
+        />
         <Btn to="/">Add Note</Btn>
+        </form>
       </NewNotePage>
     );
 }
