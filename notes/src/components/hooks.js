@@ -17,10 +17,7 @@ function useFetch(url) {
 }
 export { useFetch };
 
-function useAdd(url){
 
-}
-export {useAdd};
 
 function useEdit(url){
     

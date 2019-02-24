@@ -33,7 +33,7 @@ function IndividualNote(){
   const [editNote, setEditNote] = useState(initialNote);
   const useInputChange = event => {
     const { name, value } = event.target;
-    setNewNote({ ...newNote, [name]: value });
+    setEditNote({ ...editNote, [name]: value });
   };
     return (
       <IndividualNotePage>

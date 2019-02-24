@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-
+import Axios from "../../../node_modules/axios";
+import axios from "axios";
 const NewNotePage = styled.div`
   width: 90%;
   height: 640px;
@@ -32,16 +33,32 @@ const Btn = styled(NavLink)`
 
 //add the note to the api
 export default function AddNote() {
-  const initialNote = {id: null, title: "", content: "" };
+  const initialNote = { title: "", content: "" };
   const [newNote, setNewNote] = useState(initialNote);
   const useInputChange = event => {
     const { name, value } = event.target;
     setNewNote({ ...newNote, [name]: value });
   };
-
+  const addNewNote = e => {
+    e.preventDefault();
+    axios
+   .post("http://localhost:3001/notes", newNote)
+   .then(res => {
+     setNewNote({
+    id: '',
+    title: '',
+    content: '',
+    })
+     .then(res => {
+      newNote.history.push('/notes')
+    });
+   })
+   .catch(err=> console.log(err))
+  }
+  console.log(newNote)
   return (
     <NewNotePage>
-      <form>
+      <form onSubmit={addNewNote}>
         <TitleInput
           placeholder="Title"
           name="title"
@@ -54,7 +71,7 @@ export default function AddNote() {
           value={newNote.content}
           onChange={useInputChange}
         />
-        <Btn to="/">Add Note</Btn>
+        <Btn onClick={addNewNote} to="/">Add Note</Btn>
       </form>
     </NewNotePage>
   );
