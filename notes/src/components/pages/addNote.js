@@ -30,8 +30,7 @@ const Btn = styled(NavLink)`
   pointer: cursor;
 `;
 
-
-
+//add the note to the api
 export default function AddNote() {
   const initialNote = {id: null, title: "", content: "" };
   const [newNote, setNewNote] = useState(initialNote);
@@ -40,8 +39,6 @@ export default function AddNote() {
     setNewNote({ ...newNote, [name]: value });
   };
 
-
-  
   return (
     <NewNotePage>
       <form>

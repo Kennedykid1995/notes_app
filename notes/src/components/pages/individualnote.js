@@ -27,12 +27,28 @@ const Btn = styled(NavLink)`
   align-items: center;
   pointer: cursor;
 `
-
+//fetch the id of the specific note from the url
 function IndividualNote(){
+  const initialNote = {id: null, title: "", content: "" };
+  const [editNote, setEditNote] = useState(initialNote);
+  const useInputChange = event => {
+    const { name, value } = event.target;
+    setNewNote({ ...newNote, [name]: value });
+  };
     return (
       <IndividualNotePage>
-        <TitleInput placeholder="Title" />
-        <TextArea placeholder="Description" />
+        <TitleInput 
+        placeholder="Title"
+        name="title"
+        value={editNote.title}
+        onChange={useInputChange}
+         />
+        <TextArea 
+        placeholder="Description" 
+        name="content"
+        value={editNote.content}
+        onChange={useInputChange}
+        />
         <Btn to="/">Add Revisions</Btn>
         <Btn to="/">Delete</Btn>
       </IndividualNotePage>
