@@ -2,7 +2,6 @@ import React from 'react';
 import {useFetch} from "./hooks"; 
 import styled from "styled-components";
 import {NavLink} from 'react-router-dom';
-import Axios from 'axios';
 
 const Note = styled.div`
   margin: 10px;
@@ -57,6 +56,9 @@ function NoteObj(){
                 <NoteHeader key={id} to="/note"> 
                   <HeaderText>{title}</HeaderText>
                 </NoteHeader>
+                <NoteContents>
+                  <Text>{content}</Text>
+                </NoteContents>
             </Note>
              ))}
             </>

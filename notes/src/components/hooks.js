@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 function useFetch(url) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,3 +15,22 @@ function useFetch(url) {
   return [data, loading];
 }
 export { useFetch };
+
+function useAdd(url){
+    const initialNote = {
+        title: "",
+        content: "",
+      }
+
+}
+export {useAdd}; 
+
+function useEdit(url){
+    
+}
+export {useEdit};
+
+function useDelete(url){
+
+}
+export {useDelete};
