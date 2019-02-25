@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import axios from "axios"
-import {useEdit} from "../hooks"; 
 
 const IndividualNotePage = styled.div`
   width: 90%; 
@@ -31,6 +30,7 @@ const Btn = styled(NavLink)`
 `
 //fetch the id of the specific note from the url
 function IndividualNote(){
+  console.log(noteData)
   const initialNote = { title: "", content: "" };
   const [editNote, setEditNote] = useState(initialNote);
   const useInputChange = event => {
@@ -52,7 +52,7 @@ function IndividualNote(){
         value={editNote.content}
         onChange={useInputChange}
         />
-        <Btn to="/">Add Revisions</Btn>
+        <Btn to="/" >Add Revisions</Btn>
         <Btn to="/">Delete</Btn>
       </IndividualNotePage>
     );

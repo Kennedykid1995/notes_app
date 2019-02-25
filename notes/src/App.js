@@ -5,6 +5,7 @@ import {NavLink, Route} from 'react-router-dom';
 import NotePage from "./components/pages/notepage"; 
 import AddNote from './components/pages/addNote';
 import IndividualNote from './components/pages/individualnote';
+import {useFetch} from "./components/hooks"; 
 
 const AppHolder = styled.div`
   display: flex; 
@@ -41,6 +42,9 @@ const PageContainer = styled.div`
 `
 
 function App() {
+  const [data] = useFetch(
+    'http://localhost:3001/notes',
+  )
     return (
       <AppHolder>
         <NavBox>
@@ -63,7 +67,7 @@ function App() {
             render={props =><AddNote {...props} /> }
             />
             <Route
-            path="/note"
+            path={`/note`}
             render={props =><IndividualNote {...props} /> }
             />
           </PageContainer>
