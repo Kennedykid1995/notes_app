@@ -16,21 +16,26 @@ function useFetch(url) {
 }
 export { useFetch };
 
-function useAdd(url){
-    const initialNote = {
-        title: "",
-        content: "",
-      }
 
-}
-export {useAdd}; 
 
-function useEdit(url){
-    
-}
-export {useEdit};
+function useEdit(url) {
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    async function fetchUrl() {
+      const response = await fetch(url);
+      const json = await response.json();
+      setData(json);
+      setLoading(false);
+    }
+    useEffect(() => {
+      fetchUrl();
+    }, []);
+    return [data, loading];
+  }
+  export { useEdit };
 
 function useDelete(url){
 
 }
 export {useDelete};
+
