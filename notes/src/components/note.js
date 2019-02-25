@@ -53,7 +53,7 @@ function NoteObj(){
             <>
             {data.map(({id, title, content}) => (
             <Note>
-                <NoteHeader key={id} to="/note"> 
+                <NoteHeader key={id} to={`/note/${id}`}> 
                   <HeaderText>{title}</HeaderText>
                 </NoteHeader>
                 <NoteContents>
