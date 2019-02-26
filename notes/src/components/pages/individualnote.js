@@ -29,7 +29,9 @@ const Btn = styled(NavLink)`
 `
 
 const IndividualNote = props => {
-  console.log(props.iData, "iData")
+  console.log(props.noda, "noda")
+  const note = props.iData; 
+  
   const initialNote = { title: "", content: "" };
   const [editNote, setEditNote] = useState(initialNote);
   const useInputChange = event => {
@@ -38,22 +40,26 @@ const IndividualNote = props => {
   };
 
     return(
+      <>
+      {props.iData.map(({id, title, content}) =>(
       <IndividualNotePage>
         <TitleInput 
         placeholder="Title"
         name="title"
-        value={editNote.title}
+        value={title}
         onChange={useInputChange}
          />
         <TextArea 
         placeholder="Description" 
         name="content"
-        value={editNote.content}
+        value={content}
         onChange={useInputChange}
         />
         <Btn to="/" >Add Revisions</Btn>
         <Btn to="/">Delete</Btn>
       </IndividualNotePage>
+      ))};
+      </>
     );
 }
 export default IndividualNote;

@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink} from "react-router-dom";
+import { createBrowserHistory } from 'history';
+ 
 const Note = styled.div`
   margin: 10px;
   width: 255px;
@@ -39,6 +41,7 @@ const Text = styled.p`
   margin: 5px;
 `;
 
+const history = {createBrowserHistory}
 
 const NoteObj = props => {
   console.log(props.note, "note.js")
