@@ -19,18 +19,16 @@ export { useFetch };
 
 
 function useEdit(url) {
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [idData, setIdData] = useState([]);
     async function fetchUrl() {
       const response = await fetch(url);
       const json = await response.json();
-      setData(json);
-      setLoading(false);
+      setIdData(json);
     }
     useEffect(() => {
       fetchUrl();
     }, []);
-    return [data, loading];
+    return [idData];
   }
   export { useEdit };
 

@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react';
+import React from 'react';
 import styled from "styled-components";
 import NoteObj from "../note"; 
 
@@ -10,10 +10,10 @@ const ViewNotesPage = styled.div`
   justify-content: space-evenly;
 `
 
-function NotePage(){
+const NotePage = props =>{
         return(
             <ViewNotesPage>
-                <NoteObj />
+                <NoteObj note={props.noteDa} load={props.useLoad} />
             </ViewNotesPage>
         )
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import axios from "axios"
 
 const IndividualNotePage = styled.div`
   width: 90%; 
@@ -28,9 +27,9 @@ const Btn = styled(NavLink)`
   align-items: center;
   pointer: cursor;
 `
-//fetch the id of the specific note from the url
-function IndividualNote(){
-  console.log(noteData)
+
+const IndividualNote = props => {
+  console.log(props.iData, "iData")
   const initialNote = { title: "", content: "" };
   const [editNote, setEditNote] = useState(initialNote);
   const useInputChange = event => {

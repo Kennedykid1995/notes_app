@@ -1,9 +1,6 @@
-import React, {useState} from "react";
-import { useFetch } from "./hooks";
+import React from "react";
 import styled from "styled-components";
-import { NavLink, Route } from "react-router-dom";
-import IndividualNote from './pages/individualnote';
-
+import { NavLink} from "react-router-dom";
 const Note = styled.div`
   margin: 10px;
   width: 255px;
@@ -42,17 +39,16 @@ const Text = styled.p`
   margin: 5px;
 `;
 
-function NoteObj() {
-  const [data, loading] = useFetch("http://localhost:3001/notes");
-  const noteData = data
-  console.log(noteData)
+
+const NoteObj = props => {
+  console.log(props.note, "note.js")
   return (
     <>
-      {loading ? (
+      {props.load ? (
         "...loading"
       ) : (
         <>
-          {data.map(({ id, title, content }) => (
+          {props.note.map(({ id, title, content }) => (
             <Note>
               <NoteHeader key={id} to={`/note/${id}`}>
                 <HeaderText>{title}</HeaderText>
@@ -60,12 +56,6 @@ function NoteObj() {
               <NoteContents>
                 <Text>{content}</Text>
               </NoteContents>
-              <Route
-                path={`/note`}
-                render={() => (<IndividualNote 
-                  noteData = {noteData}
-                />)}
-              />
             </Note>
           ))}
         </>

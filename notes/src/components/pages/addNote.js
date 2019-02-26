@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import Axios from "../../../node_modules/axios";
 import axios from "axios";
 const NewNotePage = styled.div`
   width: 90%;
