@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-
+import {useEdit} from "../hooks";
 const IndividualNotePage = styled.div`
   width: 90%; 
   height: 640px;
@@ -29,20 +29,24 @@ const Btn = styled(NavLink)`
 `
 
 const IndividualNote = props => {
-  console.log(props.noda, "noda")
   const note = props.iData; 
-  
+  const url = window.location.pathname;
+  const identification = url.substring(url.lastIndexOf('/') + 1)
+  console.log(identification); 
   const initialNote = { title: "", content: "" };
   const [editNote, setEditNote] = useState(initialNote);
   const useInputChange = event => {
     const { name, value } = event.target;
     setEditNote({ ...editNote, [name]: value });
   };
-
+  const [idData] = useEdit(
+    `http://localhost:3001/notes/${identification}`
+  )
+    
     return(
       <>
-      {props.iData.map(({id, title, content}) =>(
-      <IndividualNotePage>
+      {idData.map(({id, title, content}) =>(
+      <IndividualNotePage key={id}>
         <TitleInput 
         placeholder="Title"
         name="title"
