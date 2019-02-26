@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import {useEdit} from "../hooks";
+import axios from "axios"; 
+
 const IndividualNotePage = styled.div`
   width: 90%; 
   height: 640px;
@@ -29,16 +31,33 @@ const Btn = styled(NavLink)`
 `
 
 const IndividualNote = props => {
-  const note = props.iData; 
+  const noteArr = props.notesData;
+console.log(noteArr); 
+  const [storage, setStorage] = useState(noteArr); 
   const url = window.location.pathname;
   const identification = url.substring(url.lastIndexOf('/') + 1)
-  console.log(identification); 
+
   const initialNote = { title: "", content: "" };
   const [editNote, setEditNote] = useState(initialNote);
   const useInputChange = event => {
     const { name, value } = event.target;
     setEditNote({ ...editNote, [name]: value });
   };
+  const deleteNote = e => {
+    e.preventDefault();
+    axios
+    .delete(`http://localhost:3001/notes/${identification}`)
+    .then(res => {
+      console.log(res.data)
+      axios.get("http://localhost:3001/notes").then(response => {
+        // storage.shift(response.data)
+        setStorage(...storage, response.data)
+      })
+    })
+    .catch(err => {
+      console.log(err); 
+    })
+  }
   const [idData] = useEdit(
     `http://localhost:3001/notes/${identification}`
   )
@@ -60,9 +79,9 @@ const IndividualNote = props => {
         onChange={useInputChange}
         />
         <Btn to="/" >Add Revisions</Btn>
-        <Btn to="/">Delete</Btn>
+        <Btn onClick={deleteNote} to="/">Delete</Btn>
       </IndividualNotePage>
-      ))};
+      ))}
       </>
     );
 }

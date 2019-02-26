@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink} from "react-router-dom";
-import { createBrowserHistory } from 'history';
  
 const Note = styled.div`
   margin: 10px;
@@ -41,19 +40,17 @@ const Text = styled.p`
   margin: 5px;
 `;
 
-const history = {createBrowserHistory}
 
 const NoteObj = props => {
-  console.log(props.note, "note.js")
-  return (
+ return (
     <>
       {props.load ? (
         "...loading"
       ) : (
         <>
           {props.note.map(({ id, title, content }) => (
-            <Note>
-              <NoteHeader key={id} to={`/note/${id}`}>
+            <Note key={id}>
+              <NoteHeader to={`/note/${id}`}>
                 <HeaderText>{title}</HeaderText>
               </NoteHeader>
               <NoteContents>
