@@ -31,30 +31,37 @@ const Btn = styled(NavLink)`
 `;
 
 //add the note to the api
-export default function AddNote() {
+const AddNote = props => {
+  const noteArr = props.notesData;
+  const [storage, setStorage] = useState(noteArr);
   const initialNote = { title: "", content: "" };
   const [newNote, setNewNote] = useState(initialNote);
   const useInputChange = event => {
     const { name, value } = event.target;
     setNewNote({ ...newNote, [name]: value });
   };
+
   const addNewNote = e => {
     e.preventDefault();
     axios
-   .post("http://localhost:3001/notes", newNote)
-   .then(res => {
-     setNewNote({
-    id: '',
-    title: '',
-    content: '',
-    })
-     .then(res => {
-      newNote.history.push('/notes')
-    });
-   })
-   .catch(err=> console.log(err))
-  }
-  console.log(newNote)
+      .post("http://localhost:3001/notes", newNote)
+      .then(res => {
+        setNewNote({
+          id: "",
+          title: "",
+          content: ""
+        }).then(res => {
+          axios.get("http://localhost:3001/notes").then(res => {
+            storage.unshift(newNote);
+            setStorage(...storage, res.data);
+            newNote.history.push("/notes");
+          });
+        });
+        return setNewNote;
+      })
+      .catch(err => console.log(err));
+  };
+
   return (
     <NewNotePage>
       <form onSubmit={addNewNote}>
@@ -70,8 +77,11 @@ export default function AddNote() {
           value={newNote.content}
           onChange={useInputChange}
         />
-        <Btn onClick={addNewNote} to="/">Add Note</Btn>
+        <Btn onClick={addNewNote} to="/">
+          Add Note
+        </Btn>
       </form>
     </NewNotePage>
   );
-}
+};
+export default AddNote;
