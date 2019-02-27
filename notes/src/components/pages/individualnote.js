@@ -35,7 +35,6 @@ const Btn = styled(NavLink)`
 const IndividualNote = props => {
   const noteArr = props.notesData;
   const [storage, setStorage] = useState(noteArr);
-  const note = "";
   const url = window.location.pathname;
   const identification = url.substring(url.lastIndexOf("/") + 1);
   const [editNote, setEditNote] = useState({ title: "", content: "" });
@@ -44,7 +43,14 @@ const IndividualNote = props => {
     const { name, value } = event.target;
     setEditNote({ ...editNote, [name]: value });
   };
-
+  const editANote = e => {
+    e.preventDefault(); 
+    axios.put(`http://localhost:3001/notes/${identification}`, editNote)
+    .then(res => {
+      console.log(res.data)
+    })
+    .catch(err => console.log(err))
+  }
   const deleteNote = e => {
     e.preventDefault();
     axios
@@ -79,7 +85,7 @@ const IndividualNote = props => {
             defaultValue={content}
             onChange={useInputChange}
           />
-          <Btn to="/"><div>Add Revisions</div></Btn>
+          <div onClick={editANote}><Btn to="/">Add Revisions</Btn></div>
           <Btn to="/">
           <div onClick={deleteNote}>
             Delete
