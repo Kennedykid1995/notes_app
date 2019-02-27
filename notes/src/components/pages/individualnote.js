@@ -46,14 +46,12 @@ const IndividualNote = props => {
   const editANote = e => {
     e.preventDefault(); 
     console.log(editNote.title.length || editNote.content.length > 0)
-    if(editNote.title.length > 0){
     axios.put(`http://localhost:3001/notes/${identification}`, editNote)
     .then(res => {
       console.log(res.data)
       setEditNote({editNote});
     })
     .catch(err => console.log(err))
-  }
 }
   const deleteNote = e => {
     e.preventDefault();

@@ -43,7 +43,6 @@ const AddNote = props => {
 
   const addNewNote = e => {
     e.preventDefault();
-    if(newNote.title.length > 0){
     axios
       .post("http://localhost:3001/notes", newNote)
       .then(res => {
@@ -60,7 +59,6 @@ const AddNote = props => {
         return setNewNote;
       })
       .catch(err => console.log(err));
-    }
   };
 
   return (
