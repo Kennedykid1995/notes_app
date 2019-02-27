@@ -7,6 +7,8 @@ import axios from "axios";
 const IndividualNotePage = styled.div`
   width: 90%;
   height: 640px;
+  display: flex;
+  flex-direction: column;
 `;
 const TitleInput = styled.input`
   width: 70%;
@@ -14,7 +16,7 @@ const TitleInput = styled.input`
   margin: 30px;
 `;
 const TextArea = styled.textarea`
-  width: 85%;
+  width: 70%%;
   height: 250px;
   margin: 30px;
 `;
@@ -33,12 +35,11 @@ const Btn = styled(NavLink)`
 const IndividualNote = props => {
   const noteArr = props.notesData;
   const [storage, setStorage] = useState(noteArr);
-
+  const note = "";
   const url = window.location.pathname;
   const identification = url.substring(url.lastIndexOf("/") + 1);
-
-  const initialNote = { title: "", content: "" };
-  const [editNote, setEditNote] = useState(initialNote);
+  const [editNote, setEditNote] = useState({ title: "", content: "" });
+  // const [editNote, setEditNote] = useState(initialNote);
   const useInputChange = event => {
     const { name, value } = event.target;
     setEditNote({ ...editNote, [name]: value });
@@ -51,7 +52,6 @@ const IndividualNote = props => {
       .then(res => {
         console.log(res.data);
         axios.get("http://localhost:3001/notes").then(response => {
-          // storage.shift(response.data)
           setStorage(...storage, response.data);
         });
       })
@@ -59,35 +59,8 @@ const IndividualNote = props => {
         console.log(err);
       });
   };
-
-  const editIndividualNote = e => {
-    e.preventDefault();
-    axios
-      .put(`http://localhost:3001/notes/${identification}`)
-      .then(res => {
-        console.log(res.status)
-      })
-      .catch(err => console.log(err))
-  } 
   const [idData] = useEdit(`http://localhost:3001/notes/${identification}`);
   
-  useEffect(() => {
-    axios
-    .get(`http://localhost:3001/notes/${identification}`)
-    .then(response => {
-      setEditNote({
-        title: response.data.title,
-        content: response.data.content
-      })
-    })
-    .catch(err => console.log(err)); 
-
-  })
-  const changeTitle = e => {
-    setEditNote({
-      title: e.target.value,
-    })
-  }
   return (
     <>
       {idData.map(({ id, title, content }) => (
@@ -96,17 +69,17 @@ const IndividualNote = props => {
             placeholder="Title"
             name="title"
             type="text"
-            value={changeTitle}
+            defaultValue={title}
             onChange={useInputChange}
           />
           <TextArea
             placeholder="Description"
             name="content"
             type="text"
-            value=""
+            defaultValue={content}
             onChange={useInputChange}
           />
-          <Btn to="/"><div onClick={editIndividualNote}>Add Revisions</div></Btn>
+          <Btn to="/"><div>Add Revisions</div></Btn>
           <Btn to="/">
           <div onClick={deleteNote}>
             Delete
