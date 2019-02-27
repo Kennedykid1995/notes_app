@@ -51,12 +51,12 @@ const AddNote = props => {
           title: "",
           content: ""
         }).then(res => {
-          axios.get("http://localhost:3001/notes").then(res => {
-            setStorage(...storage, res.data);
-            newNote.history.push("/notes");
+          axios.get("http://localhost:3001/notes")
+          .then(res => {
+            res.json();
+            newNote.history.push("/notes");  
           });
         });
-        return setNewNote;
       })
       .catch(err => console.log(err));
   };
