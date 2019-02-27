@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { useEdit } from "../hooks";
@@ -45,7 +45,8 @@ const IndividualNote = props => {
   };
   const editANote = e => {
     e.preventDefault(); 
-    if(editNote.length > 0){
+    console.log(editNote.title.length || editNote.content.length > 0)
+    if(editNote.title.length > 0){
     axios.put(`http://localhost:3001/notes/${identification}`, editNote)
     .then(res => {
       console.log(res.data)

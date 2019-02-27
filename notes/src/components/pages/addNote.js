@@ -43,7 +43,7 @@ const AddNote = props => {
 
   const addNewNote = e => {
     e.preventDefault();
-    if(newNote.length > 0){
+    if(newNote.title.length > 0){
     axios
       .post("http://localhost:3001/notes", newNote)
       .then(res => {
@@ -55,7 +55,6 @@ const AddNote = props => {
           axios.get("http://localhost:3001/notes").then(res => {
             setStorage(...storage, res.data);
             newNote.history.push("/notes");
-            setNewNote({newNote})
           });
         });
         return setNewNote;
@@ -66,7 +65,7 @@ const AddNote = props => {
 
   return (
     <NewNotePage>
-      <form onSubmit={addNewNote}>
+      <form>
         <TitleInput
           placeholder="Title"
           name="title"

@@ -42,7 +42,6 @@ const PageContainer = styled.div`
 `;
 
 const App = props => {
-
   const [data, loading] = useFetch("http://localhost:3001/notes");
   return (
     <AppHolder>
