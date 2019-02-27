@@ -17,6 +17,8 @@ const TextArea = styled.textarea`
   width: 70%;
   height: 250px;
   margin: 30px;
+  resize: none; 
+
 `;
 const Btn = styled(NavLink)`
   width: 150px;

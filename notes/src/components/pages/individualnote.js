@@ -8,7 +8,7 @@ const IndividualNotePage = styled.div`
   width: 90%;
   height: 640px;
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
 `;
 const TitleInput = styled.input`
   width: 70%;
@@ -16,9 +16,10 @@ const TitleInput = styled.input`
   margin: 30px;
 `;
 const TextArea = styled.textarea`
-  width: 70%%;
+  width: 70%;
   height: 250px;
   margin: 30px;
+  resize: none; 
 `;
 const Btn = styled(NavLink)`
   width: 150px;
@@ -60,6 +61,7 @@ const IndividualNote = props => {
       .then(res => {
         console.log(res.data);
         axios.get("http://localhost:3001/notes").then(response => {
+          
           setStorage(...storage, response.data);
         });
       })
@@ -68,27 +70,27 @@ const IndividualNote = props => {
       });
   };
   const [idData] = useEdit(`http://localhost:3001/notes/${identification}`);
-  
+
   return (
+    
     <>
       {idData.map(({ id, title, content }) => (
-        <IndividualNotePage key={id}>
+        <IndividualNotePage>
           <TitleInput
             placeholder="Title"
             name="title"
-            type="text"
             defaultValue={title}
             onChange={useInputChange}
           />
           <TextArea
             placeholder="Description"
             name="content"
-            type="text"
             defaultValue={content}
             onChange={useInputChange}
           />
           <div onClick={editANote}><Btn to="/">Add Revisions</Btn></div>
           <div onClick={deleteNote}><Btn to="/"> Delete </Btn></div>
+          
         </IndividualNotePage>
       ))}
     </>
