@@ -45,12 +45,15 @@ const IndividualNote = props => {
   };
   const editANote = e => {
     e.preventDefault(); 
+    if(editNote.length > 0){
     axios.put(`http://localhost:3001/notes/${identification}`, editNote)
     .then(res => {
       console.log(res.data)
+      setEditNote({editNote});
     })
     .catch(err => console.log(err))
   }
+}
   const deleteNote = e => {
     e.preventDefault();
     axios
@@ -86,11 +89,7 @@ const IndividualNote = props => {
             onChange={useInputChange}
           />
           <div onClick={editANote}><Btn to="/">Add Revisions</Btn></div>
-          <Btn to="/">
-          <div onClick={deleteNote}>
-            Delete
-            </div>
-          </Btn>
+          <div onClick={deleteNote}><Btn to="/"> Delete </Btn></div>
         </IndividualNotePage>
       ))}
     </>

@@ -43,6 +43,7 @@ const AddNote = props => {
 
   const addNewNote = e => {
     e.preventDefault();
+    if(newNote.length > 0){
     axios
       .post("http://localhost:3001/notes", newNote)
       .then(res => {
@@ -52,14 +53,15 @@ const AddNote = props => {
           content: ""
         }).then(res => {
           axios.get("http://localhost:3001/notes").then(res => {
-            storage.unshift(newNote);
             setStorage(...storage, res.data);
             newNote.history.push("/notes");
+            setNewNote({newNote})
           });
         });
         return setNewNote;
       })
       .catch(err => console.log(err));
+    }
   };
 
   return (
@@ -77,9 +79,11 @@ const AddNote = props => {
           value={newNote.content}
           onChange={useInputChange}
         />
-        <Btn onClick={addNewNote} to="/">
+        <div onClick={addNewNote} >
+        <Btn to="/">
           Add Note
         </Btn>
+        </div>
       </form>
     </NewNotePage>
   );
