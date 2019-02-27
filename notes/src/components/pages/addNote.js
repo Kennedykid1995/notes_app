@@ -51,20 +51,19 @@ const AddNote = props => {
           title: "",
           content: ""
         }).then(res => {
-          axios.get("http://localhost:3001/notes").then(res => {
-            storage.unshift(newNote);
-            setStorage(...storage, res.data);
-            newNote.history.push("/notes");
+          axios.get("http://localhost:3001/notes")
+          .then(res => {
+            res.json();
+            newNote.history.push("/notes");  
           });
         });
-        return setNewNote;
       })
       .catch(err => console.log(err));
   };
 
   return (
     <NewNotePage>
-      <form onSubmit={addNewNote}>
+      <form>
         <TitleInput
           placeholder="Title"
           name="title"
@@ -77,9 +76,11 @@ const AddNote = props => {
           value={newNote.content}
           onChange={useInputChange}
         />
-        <Btn onClick={addNewNote} to="/">
+        <div onClick={addNewNote} >
+        <Btn to="/">
           Add Note
         </Btn>
+        </div>
       </form>
     </NewNotePage>
   );
