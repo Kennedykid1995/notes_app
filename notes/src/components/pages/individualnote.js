@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { useEdit } from "../hooks";
@@ -70,7 +70,24 @@ const IndividualNote = props => {
       .catch(err => console.log(err))
   } 
   const [idData] = useEdit(`http://localhost:3001/notes/${identification}`);
+  
+  useEffect(() => {
+    axios
+    .get(`http://localhost:3001/notes/${identification}`)
+    .then(response => {
+      setEditNote({
+        title: response.data.title,
+        content: response.data.content
+      })
+    })
+    .catch(err => console.log(err)); 
 
+  })
+  const changeTitle = e => {
+    setEditNote({
+      title: e.target.value,
+    })
+  }
   return (
     <>
       {idData.map(({ id, title, content }) => (
@@ -78,13 +95,15 @@ const IndividualNote = props => {
           <TitleInput
             placeholder="Title"
             name="title"
-            value={title}
+            type="text"
+            value={changeTitle}
             onChange={useInputChange}
           />
           <TextArea
             placeholder="Description"
             name="content"
-            value={content}
+            type="text"
+            value=""
             onChange={useInputChange}
           />
           <Btn to="/"><div onClick={editIndividualNote}>Add Revisions</div></Btn>
