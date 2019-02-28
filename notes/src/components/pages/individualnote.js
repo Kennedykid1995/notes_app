@@ -44,17 +44,18 @@ const IndividualNote = props => {
     const { name, value } = event.target;
     setEditNote({ ...editNote, [name]: value });
   };
-
   const refreshPage = () =>{
     window.location.reload(); 
   }
-
-  const editANote = async(e) => {
+  const editANote = (e) => {
     e.preventDefault(); 
+    console.log(editNote.title)
     axios.put(`http://localhost:3001/notes/${identification}`, editNote)
-    .then(res => {
+    .then( res => {
+      if(res.data.title.length > 0){
       console.log(res.data)
       setEditNote({editNote});
+      }
     })
     .catch(err => console.log(err))
 }
@@ -74,12 +75,10 @@ const IndividualNote = props => {
       });
   };
   const [idData] = useEdit(`http://localhost:3001/notes/${identification}`);
-
   return (
-    
     <>
       {idData.map(({ id, title, content }) => (
-        <IndividualNotePage>
+        <IndividualNotePage key={id}>
           <TitleInput
             placeholder="Title"
             name="title"
@@ -94,7 +93,6 @@ const IndividualNote = props => {
           />
           <div onClick={editANote}><Btn onClick={refreshPage} to="/">Add Revisions</Btn></div>
           <div onClick={deleteNote}><Btn onClick={refreshPage} to="/"> Delete </Btn></div>
-          
         </IndividualNotePage>
       ))}
     </>

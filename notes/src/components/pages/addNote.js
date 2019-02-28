@@ -57,9 +57,18 @@ const AddNote = props => {
           id: "",
           title: "",
           content: ""
-        }).then(res => {
+        })
+        .catch(res => {
+          if(res.data === ""){
+            alert("You need to fill the title and content");
+            res.status(400)
+            
+          }
+        })
+        .then(res => {
+          console.log(newNote.title)
           const status = res.data.status;
-          if( status === "OK"){
+          if( status === 200){
             const newNoteData = storage.push(newNote);  
             setStorage(...storage, newNoteData)}
         });
