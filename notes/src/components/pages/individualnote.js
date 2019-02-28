@@ -52,10 +52,8 @@ const IndividualNote = props => {
     console.log(editNote.title)
     axios.put(`http://localhost:3001/notes/${identification}`, editNote)
     .then( res => {
-      if(res.data.title.length > 0){
       console.log(res.data)
       setEditNote({editNote});
-      }
     })
     .catch(err => console.log(err))
 }
