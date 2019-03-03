@@ -60,10 +60,10 @@ const IndividualNote = props => {
   const deleteNote = e => {
     e.preventDefault();
     axios
-      .delete(`http://localhost:3001/notes/${identification}`)
+      .delete(`https://enigmatic-bayou-92631.herokuapp.com/notes/${identification}`)
       .then(res => {
         console.log(res.data);
-        axios.get("http://localhost:3001/notes").then(response => {
+        axios.get("https://enigmatic-bayou-92631.herokuapp.com/notes").then(response => {
           setStorage(...storage, response.data);
           console.log(response.data)
         });
@@ -72,7 +72,7 @@ const IndividualNote = props => {
         console.log(err);
       });
   };
-  const [idData] = useEdit(`http://localhost:3001/notes/${identification}`);
+  const [idData] = useEdit(`https://enigmatic-bayou-92631.herokuapp.com/notes/${identification}`);
   return (
     <>
       {idData.map(({ id, title, content }) => (
