@@ -17,6 +17,8 @@ const TextArea = styled.textarea`
   width: 70%;
   height: 250px;
   margin: 30px;
+  resize: none; 
+
 `;
 const Btn = styled(NavLink)`
   width: 150px;
@@ -34,6 +36,7 @@ const Btn = styled(NavLink)`
 const AddNote = props => {
   const noteArr = props.notesData;
   const [storage, setStorage] = useState(noteArr);
+
   const initialNote = { title: "", content: "" };
   const [newNote, setNewNote] = useState(initialNote);
   const useInputChange = event => {
@@ -41,7 +44,11 @@ const AddNote = props => {
     setNewNote({ ...newNote, [name]: value });
   };
 
-  const addNewNote = e => {
+  const refreshPage = () =>{
+    window.location.reload(); 
+  }
+
+  const addNewNote = async(e) => {
     e.preventDefault();
     axios
       .post("http://localhost:3001/notes", newNote)
@@ -50,12 +57,20 @@ const AddNote = props => {
           id: "",
           title: "",
           content: ""
-        }).then(res => {
-          axios.get("http://localhost:3001/notes")
-          .then(res => {
-            res.json();
-            newNote.history.push("/notes");  
-          });
+        })
+        .catch(res => {
+          if(res.data === ""){
+            alert("You need to fill the title and content");
+            res.status(400)
+            
+          }
+        })
+        .then(res => {
+          console.log(newNote.title)
+          const status = res.data.status;
+          if( status === 200){
+            const newNoteData = storage.push(newNote);  
+            setStorage(...storage, newNoteData)}
         });
       })
       .catch(err => console.log(err));
@@ -77,7 +92,7 @@ const AddNote = props => {
           onChange={useInputChange}
         />
         <div onClick={addNewNote} >
-        <Btn to="/">
+        <Btn onClick={ refreshPage} to="/">
           Add Note
         </Btn>
         </div>

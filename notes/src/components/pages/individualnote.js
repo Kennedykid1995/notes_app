@@ -8,7 +8,7 @@ const IndividualNotePage = styled.div`
   width: 90%;
   height: 640px;
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
 `;
 const TitleInput = styled.input`
   width: 70%;
@@ -16,9 +16,10 @@ const TitleInput = styled.input`
   margin: 30px;
 `;
 const TextArea = styled.textarea`
-  width: 70%%;
+  width: 70%;
   height: 250px;
   margin: 30px;
+  resize: none; 
 `;
 const Btn = styled(NavLink)`
   width: 150px;
@@ -43,11 +44,14 @@ const IndividualNote = props => {
     const { name, value } = event.target;
     setEditNote({ ...editNote, [name]: value });
   };
-  const editANote = e => {
+  const refreshPage = () =>{
+    window.location.reload(); 
+  }
+  const editANote = (e) => {
     e.preventDefault(); 
-    console.log(editNote.title.length || editNote.content.length > 0)
+    console.log(editNote.title)
     axios.put(`http://localhost:3001/notes/${identification}`, editNote)
-    .then(res => {
+    .then( res => {
       console.log(res.data)
       setEditNote({editNote});
     })
@@ -61,6 +65,7 @@ const IndividualNote = props => {
         console.log(res.data);
         axios.get("http://localhost:3001/notes").then(response => {
           setStorage(...storage, response.data);
+          console.log(response.data)
         });
       })
       .catch(err => {
@@ -68,7 +73,6 @@ const IndividualNote = props => {
       });
   };
   const [idData] = useEdit(`http://localhost:3001/notes/${identification}`);
-  
   return (
     <>
       {idData.map(({ id, title, content }) => (
@@ -76,19 +80,17 @@ const IndividualNote = props => {
           <TitleInput
             placeholder="Title"
             name="title"
-            type="text"
             defaultValue={title}
             onChange={useInputChange}
           />
           <TextArea
             placeholder="Description"
             name="content"
-            type="text"
             defaultValue={content}
             onChange={useInputChange}
           />
-          <div onClick={editANote}><Btn to="/">Add Revisions</Btn></div>
-          <div onClick={deleteNote}><Btn to="/"> Delete </Btn></div>
+          <div onClick={editANote}><Btn onClick={refreshPage} to="/">Add Revisions</Btn></div>
+          <div onClick={deleteNote}><Btn onClick={refreshPage} to="/"> Delete </Btn></div>
         </IndividualNotePage>
       ))}
     </>
