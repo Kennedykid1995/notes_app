@@ -51,7 +51,7 @@ const AddNote = props => {
   const addNewNote = async(e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/notes", newNote)
+      .post("https://enigmatic-bayou-92631.herokuapp.com/notes", newNote)
       .then(res => {
         setNewNote({
           id: "",
