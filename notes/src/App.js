@@ -15,7 +15,7 @@ const AppHolder = styled.div`
 `;
 const NavBox = styled.div`
   width: 90%;
-  height: 720px;
+  height: 550px;
   margin-top: 15px;
   background: white;
   border-radius: 5px;

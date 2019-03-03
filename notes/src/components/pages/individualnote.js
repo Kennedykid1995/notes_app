@@ -17,13 +17,13 @@ const TitleInput = styled.input`
 `;
 const TextArea = styled.textarea`
   width: 70%;
-  height: 250px;
+  height: 150px;
   margin: 30px;
   resize: none; 
 `;
 const Btn = styled(NavLink)`
-  width: 150px;
-  height: 50px;
+  width: 100px;
+  height: 25px;
   border: 1px solid black;
   margin: 10px 30px;
   text-decoration: none;
@@ -31,6 +31,7 @@ const Btn = styled(NavLink)`
   justify-content: center;
   align-items: center;
   pointer: cursor;
+  font-size: 12px;
 `;
 
 const IndividualNote = props => {
