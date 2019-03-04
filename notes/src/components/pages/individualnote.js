@@ -63,7 +63,7 @@ const IndividualNote = props => {
   const editANote = (e) => {
     e.preventDefault(); 
     console.log(editNote.title)
-    axios.put(`http://localhost:3001/notes/${identification}`, editNote)
+    axios.put(`https://enigmatic-bayou-92631.herokuapp.com/notes/${identification}`, editNote)
     .then( res => {
       console.log(res.data)
       setEditNote({editNote});
