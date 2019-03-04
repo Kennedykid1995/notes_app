@@ -6,6 +6,7 @@ import NotePage from "./components/pages/notepage";
 import AddNote from "./components/pages/addNote";
 import IndividualNote from "./components/pages/individualnote";
 import { useFetch} from "./components/hooks";
+import Blob from "./background"; 
 
 const AppHolder = styled.div`
   display: flex;
@@ -14,8 +15,8 @@ const AppHolder = styled.div`
   align-items: center;
 `;
 const NavBox = styled.div`
-  width: 90%;
-  height: 720px;
+  width: 80%;
+  height: 550px;
   margin-top: 15px;
   background: white;
   border-radius: 5px;
@@ -62,6 +63,7 @@ const App = props => {
           <Route path="/note/:id" render={props => <IndividualNote {...props} notesData = {data} />} />
         </PageContainer>
       </NavBox>
+      <Blob/>
     </AppHolder>
   );
 };

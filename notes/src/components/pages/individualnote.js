@@ -14,23 +14,37 @@ const TitleInput = styled.input`
   width: 70%;
   height: 25px;
   margin: 30px;
+  padding: 5px;
+  border-radius: 20px;
+  border: 2px solid #fcc600;
 `;
 const TextArea = styled.textarea`
   width: 70%;
-  height: 250px;
+  height: 170px;
   margin: 30px;
   resize: none; 
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid #fcc600;
 `;
 const Btn = styled(NavLink)`
-  width: 150px;
-  height: 50px;
-  border: 1px solid black;
+  width: 100px;
+  height: 25px;
+  border-radius: 15px;
+  background: #ffbb00; 
   margin: 10px 30px;
   text-decoration: none;
   display: flex;
   justify-content: center;
   align-items: center;
   pointer: cursor;
+  color: white;
+  font-size: 12px;
+  animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    @keyframes scale-up-center {
+      0% {transform: scale(0.5);}
+      100% { transform: scale(1);}
+    }  
 `;
 
 const IndividualNote = props => {
