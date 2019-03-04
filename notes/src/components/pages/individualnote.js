@@ -46,7 +46,6 @@ const Btn = styled(NavLink)`
       100% { transform: scale(1);}
     }  
 `;
-
 const IndividualNote = props => {
   const noteArr = props.notesData;
   const [storage, setStorage] = useState(noteArr);
