@@ -12,6 +12,18 @@ const Note = styled.div`
   flex-direction: column;
   justify-contents: center;
   align-items: center;
+  animation: roll-in-left 1s ease-out both;
+  @keyframes roll-in-left {
+    0% {
+              transform: translateX(-800px) rotate(-540deg);
+      opacity: 0;
+    }
+    100% {
+              transform: translateX(0) rotate(0deg);
+      opacity: 1;
+    }
+  }
+  
 `;
 const NoteHeader = styled(NavLink)`
   width: 100%;
