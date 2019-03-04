@@ -17,6 +17,17 @@ const TitleInput = styled.input`
   padding: 5px;
   border-radius: 20px;
   border: 2px solid #fcc600;
+  animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  @keyframes slide-in-top {
+    0% {
+              transform: translateY(-1000px);
+      opacity: 0;
+    }
+    100% {
+              transform: translateY(0);
+      opacity: 1;
+    }
+  }
 `;
 const TextArea = styled.textarea`
   width: 70%;
@@ -26,6 +37,17 @@ const TextArea = styled.textarea`
   padding: 5px;
   border-radius: 10px;
   border: 2px solid #fcc600;
+  animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  @keyframes slide-in-top {
+    0% {
+              transform: translateY(-1000px);
+      opacity: 0;
+    }
+    100% {
+              transform: translateY(0);
+      opacity: 1;
+    }
+  }
 `;
 const Btn = styled(NavLink)`
   width: 100px;
