@@ -41,7 +41,6 @@ const PageContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 `;
-
 const App = props => {
   const [data, loading] = useFetch("https://enigmatic-bayou-92631.herokuapp.com/notes");
   return (
