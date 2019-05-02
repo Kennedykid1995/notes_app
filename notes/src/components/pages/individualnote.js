@@ -124,8 +124,8 @@ const IndividualNote = props => {
             defaultValue={content}
             onChange={useInputChange}
           />
-          <div onClick={editANote}><Btn onClick={refreshPage} to="/">Add Revisions</Btn></div>
-          <div onClick={deleteNote}><Btn onClick={refreshPage} to="/"> Delete </Btn></div>
+          <div onClick={editANote}><Btn className="editBtn" onClick={refreshPage} to="/">Add Revisions</Btn></div>
+          <div onClick={deleteNote}><Btn className="deleteBtn" onClick={refreshPage} to="/"> Delete </Btn></div>
         </IndividualNotePage>
       ))}
     </>
