@@ -64,7 +64,7 @@ const NoteObj = props => {
           {props.note.map(({ id, title, content }) => (
             <Note key={id}>
               <NoteHeader to={`/note/${id}`}>
-                <HeaderText>{title}</HeaderText>
+                <HeaderText className="title">{title}</HeaderText>
               </NoteHeader>
               <NoteContents>
                 <Text>{content}</Text>
